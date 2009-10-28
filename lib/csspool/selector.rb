@@ -3,6 +3,9 @@ module CSSPool
     attr_accessor :simple_selectors
     attr_accessor :parse_location
     attr_accessor :rule_set
+    
+    COMBINATORS = [nil, ' ', ' + ', ' > ']
+
 
     def initialize simple_selectors = [], parse_location = {}
       @simple_selectors = simple_selectors

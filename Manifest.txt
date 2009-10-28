@@ -1,5 +1,5 @@
-.autotest
 CHANGELOG.rdoc
+History.txt
 Manifest.txt
 README.rdoc
 Rakefile
@@ -55,6 +55,9 @@ lib/csspool/visitors/comparable.rb
 lib/csspool/visitors/iterator.rb
 lib/csspool/visitors/to_css.rb
 lib/csspool/visitors/visitor.rb
+script/console
+script/destroy
+script/generate
 test/css/test_document.rb
 test/css/test_import_rule.rb
 test/helper.rb
@@ -62,6 +65,8 @@ test/sac/test_parser.rb
 test/sac/test_properties.rb
 test/sac/test_terms.rb
 test/test_collection.rb
+test/test_csspool.rb
+test/test_helper.rb
 test/test_parser.rb
 test/test_selector.rb
 test/visitors/test_children.rb

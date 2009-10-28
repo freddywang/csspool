@@ -14,6 +14,52 @@ module CSSPool
         assert_equal 'font: 14.0px / 30.0px Tahoma;',
           doc.rule_sets.first.declarations.first.to_css.strip
       end
+      
+      def test_descendant_selector_serialization
+        doc = CSSPool.CSS 'p a { font: 14px/30px Tahoma; }'
+        assert_equal 'p a', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendant_selector_with_id_serialization
+        doc = CSSPool.CSS 'p#a a#b { font: 14px/30px Tahoma; }'
+        assert_equal 'p#a a#b', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendent_universal_id_selector_serialization
+        doc = CSSPool.CSS '#a #b { font: 14px/30px Tahoma; }'
+        assert_equal '#a #b', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendant_selector_with_class_serialization
+        doc = CSSPool.CSS 'p.a a.b { font: 14px/30px Tahoma; }'
+        assert_equal 'p.a a.b', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendent_universal_class_selector_serialization
+        doc = CSSPool.CSS '.a .b { font: 14px/30px Tahoma; }'
+        assert_equal '.a .b', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendant_child_selector_serialization
+        doc = CSSPool.CSS 'p > a { font: 14px/30px Tahoma; }'
+        assert_equal 'p > a', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendant_child_selector_with_id_serialization
+        doc = CSSPool.CSS 'p#a > a#b { font: 14px/30px Tahoma; }'
+        assert_equal 'p#a > a#b', doc.rule_sets.first.selectors.first.to_css
+      end
+      
+      def test_descendant_child_selector_universal_id_serialization
+        doc = CSSPool.CSS '#a > #b { font: 14px/30px Tahoma; }'
+        assert_equal '#a > #b', doc.rule_sets.first.selectors.first.to_css
+      end
+
+      def test_descendant_child_selector_universal_class_serialization
+        doc = CSSPool.CSS '.a > .b { font: 14px/30px Tahoma; }'
+        assert_equal '.a > .b', doc.rule_sets.first.selectors.first.to_css
+      end     
+      
 
       # FIXME: this is a bug in libcroco
       #def test_ident_followed_by_id

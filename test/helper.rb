@@ -1,5 +1,7 @@
+require "rubygems"
 require "test/unit"
 require "csspool"
+
 
 module CSSPool
   class TestCase < Test::Unit::TestCase

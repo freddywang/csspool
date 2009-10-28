@@ -1,8 +1,2 @@
 /doc
 /pkg
-
-/lib/property_parser.y
-/lib/css/parser.rb
-
-/lib/css/sac/generated_parser.rb
-/lib/css/sac/generated_property_parser.rb

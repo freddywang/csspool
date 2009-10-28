@@ -3,7 +3,7 @@ module CSSPool
     class ToCSS < Visitor
       def initialize
         @indent_level = 0
-        @indent_space = '  '
+        @indent_space = ' '
       end
 
       visitor_for CSS::Document do |target|
@@ -83,10 +83,8 @@ module CSSPool
         "##{target.value}"
       end
 
-      visitor_for Selectors::Simple, Selectors::Universal do |target|
-        ([target.name] + target.additional_selectors.map { |x|
-          x.accept self
-        }).join
+      visitor_for Selectors::Simple, Selectors::Universal, Selectors::Type do |target|
+        "#{ Selector::COMBINATORS[target.combinator] }#{ target.name }#{ target.additional_selectors.map{|x|x.accept self} }"
       end
 
       visitor_for Terms::URI do |target|
@@ -119,18 +117,6 @@ module CSSPool
 
       visitor_for Selector do |target|
         target.simple_selectors.map { |ss| ss.accept self }.join
-      end
-
-      visitor_for Selectors::Type do |target|
-        combo = {
-          0 => nil,
-          1 => ' ',
-          2 => ' + ',
-          3 => ' > '
-        }[target.combinator]
-
-        [combo, target.name].compact.join +
-          target.additional_selectors.map { |as| as.accept self }.join
       end
 
       visitor_for Terms::Number do |target|

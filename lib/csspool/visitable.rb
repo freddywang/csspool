@@ -11,13 +11,12 @@ module CSSPool
 
     def == other
       return false unless self.class == other.class
-
-      accept Visitors::Comparable.new other
+      accept Visitors::Comparable.new(other)
     end
     alias :eql? :==
 
     def each &block
-      accept Visitors::Iterator.new block
+      accept Visitors::Iterator.new(block)
     end
 
     def children
